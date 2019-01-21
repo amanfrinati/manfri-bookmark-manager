@@ -6,7 +6,7 @@ const firebase = require('firebase');
 const bot = new TelegramBot(process.env.TELEGRAM_API_TOKEN, { polling: true });
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyDevRj4E46l2VgObqTbI4SKdKcA-as-I6s",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "bookmark-manager-f9485.firebaseapp.com",
   databaseURL: "https://bookmark-manager-f9485.firebaseio.com",
   projectId: "bookmark-manager-f9485",
@@ -61,7 +61,7 @@ bot.on('callback_query', (callbackQuery) => {
 			});
 
 			bot.sendMessage(msg.chat.id, `Added ${results.data.ogTitle} to ${callbackQuery.data}!`);
-		
+
 		} else {
 			sitesRef.push().set({
 				url: siteUrl
